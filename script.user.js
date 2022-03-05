@@ -45,12 +45,16 @@
                 thisRef.rRecs={};
                 for(let i=0;i<unsortedRecords.length;i++){
                     let item=unsortedRecords[i];
-                    thisRef.rRecs[item.demon.id]={progress:item.progress};
+                    if(!(item.demon.position>LIMIT_DEMONS_NUMBER)){
+                        thisRef.rRecs[item.demon.id]={progress:item.progress};
+                    }
                 }
                 let verifiedRecords=playerDat.data.verified;
                 for(let i=0;i<verifiedRecords.length;i++){
                     let item=verifiedRecords[i];
-                    thisRef.rRecs[item.id]={progress:100};
+                    if(!(item.position>LIMIT_DEMONS_NUMBER)){
+                        thisRef.rRecs[item.id]={progress:100};
+                    }
                 }
 
                 //calc real pts
@@ -251,7 +255,9 @@
 
     let calcState=new CalcState();
 
-    const TEST=true;
+    const TEST=false;
+    const LIMIT_DEMONS_NUMBER=150;
+
     let log=new Logger();
     if(TEST){
         window.calcState=calcState;
@@ -297,7 +303,7 @@
     * @param pageLength - Self explanatory, also please make sure its a number
     * @returns - Promise that resolves in array of demons.
     */
-    function demonLoader(afterPage=0,pageLength=75,limit=150){//todo: this is a mess omfg
+    function demonLoader(afterPage=0,pageLength=75,limit=LIMIT_DEMONS_NUMBER){//todo: this is a mess omfg
         log.i("loading page "+(afterPage+1));
         let fetchPromise=new Promise(function(res,rej){//todo: handle error idk
             fetch("https://pointercrate.com/api/v2/demons/listed?limit="+Math.min(pageLength,limit)+"&after="+(afterPage*pageLength)).then(function(resp){
@@ -331,13 +337,13 @@
         if(calcState.ready){
             let demon=calcState.getDemonByID(demonID);
             if(demon){
-                if(demon.position>75&&(progress!==100)){
+                if(demon.position>75&&(progress<100)){
                     return 0;
                 }else{
                     return pointFormula(demon.position,progress,demon.requirement);
                 }
             }else{
-                log.e("Attempted to call getPointsForRecord on non-existant demon!!");
+                log.e("Attempted to call getPointsForRecord on non-existant demon!! id: "+demonID);
                 return 0;
             }
         }else{
