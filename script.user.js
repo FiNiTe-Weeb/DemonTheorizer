@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         DemonTheorizer
 // @namespace    what does this do
-// @version      1.0.1
+// @version      1.0.2
 // @homepage     https://github.com/FiNiTe-Weeb/DemonTheorizer
-// @updateURL    https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.js
-// @downloadURL  https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.js
+// @updateURL    https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
+// @downloadURL  https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
 // @description  How many list Geometry Dash Pointercrate official demonlist points would I have if I got x% on y demon?????
 // @author       FiNiTe#8429 on Discord
 // @match        https://pointercrate.com/demonlist/statsviewer/
