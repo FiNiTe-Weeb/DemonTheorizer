@@ -1,7 +1,7 @@
 # DemonTheorizer
 How many list Geometry Dash Pointercrate official demonlist points would I have if I got x% on y demon?????
 
-It appears on stat viewer under ur the demons beaten thing
+It appears on stat viewer under ur demons beaten thing
 
 # Installation:
 1. install tampermonkey or greasemonkey or violentmonkey for ur web browser of choice (idk why they r all called monkeys but they're browser extensions for running scripts)
