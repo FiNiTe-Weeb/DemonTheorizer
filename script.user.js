@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DemonTheorizer
 // @namespace    what does this do
-// @version      1.0.2
+// @version      1.1.0
 // @homepage     https://github.com/FiNiTe-Weeb/DemonTheorizer
 // @updateURL    https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
 // @downloadURL  https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
