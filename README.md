@@ -3,7 +3,7 @@ How many list Geometry Dash Pointercrate official demonlist points would I have 
 
 It appears on stat viewer under ur demons beaten thing
 
-![image](https://user-images.githubusercontent.com/101021772/156901578-1c188c12-ea85-4b3a-a438-0e311339db52.png)
+![image](https://user-images.githubusercontent.com/101021772/156901598-d48bcab1-1390-43eb-9095-6cc2d61e1f54.png)
 
 
 # Installation:
