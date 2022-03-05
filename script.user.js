@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DemonTheorizer
 // @namespace    what does this do
-// @version      1.1.0
+// @version      1.1.1
 // @homepage     https://github.com/FiNiTe-Weeb/DemonTheorizer
 // @updateURL    https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
 // @downloadURL  https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/script.user.js
@@ -245,9 +245,9 @@
                 this.i=function (){console.log(...arguments);}
                 this.w=function (){console.warn(...arguments);}
             }else{
-                this.i=log.w=function(){};
+                this.i=this.w=function(){};
             }
-            this.e=function (){console.error(...arguments);}
+            this.e=function(){console.error(...arguments);}
         }
     }
 
@@ -270,15 +270,6 @@
     function round(value=1,decimalPlaces=2){
         let scale=Math.pow(10,decimalPlaces);
         return Math.round(value*scale)/scale;
-    }
-
-    //Give us logging functions if TEST is true
-    if(TEST){
-        log.i=function (){console.log(...arguments);}
-        log.w=function (){console.warn(...arguments);}
-        log.e=function (){console.error(...arguments);}
-    }else{
-        log.i=log.w=log.e=function(){};
     }
 
     /*
