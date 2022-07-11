@@ -154,6 +154,31 @@
 		<div id="overrides-result"></div>
 	</div>
 	<script>
+			
+    const VERSION = "1.1.2";
+    const VERSION_CHECKING=false;
+    window.getVersionOnGithub=function(){
+        return fetch("https://raw.githubusercontent.com/FiNiTe-Weeb/DemonTheorizer/main/VERSION").then(function(resp){return resp.text();})
+    }
+    window.getCurrentVersion=function(){
+        return VERSION;
+    }
+    //return 1 if current version is newer (should only happen on dev), return -1 if current version is outdated, return 0 if both versions same
+    window.versionCompare=async function(){
+        let curVerArr=window.getCurrentVersion().split(".");
+        let newVerArr = (await window.getVersionOnGithub()).replaceAll("\n","").split(".");
+        let i=0;
+        while(curVerArr[i]&&newVerArr[i]){
+            if(curVerArr[i]>newVerArr[i]){
+                return 1;
+            }
+            if(curVerArr[i]<newVerArr[i]){
+                return -1;
+            }
+            i++;
+        }
+        return 0;
+    }
 	//get my info
     //fetch("https://pointercrate.com/api/v1/players/3936/").then(function(dat){return dat.text();}).then(function(resp){console.log(JSON.parse(resp));});
 
@@ -534,24 +559,19 @@
             return 0;
         }else{//god this was a pain to write out
             let score;
-            if(125<position && position<=150){
-                score=150*Math.exp((1 - position) * Math.log(1 / 30) / (-149));
-            } else if(50 < position && position <= 125){
-                let a = 2.333;
-                let b = 1.884;
-                score=60 * (
-                    Math.pow(a, (
-                        (51 - position) * (
-                            Math.log(30) / 99)
-                        )
-                    )
-                ) + b;
-            }else if(20 < position && position <= 50){
-                let c = 1.01327;
-                let d = 26.489;
-                score= -100 * (
-                    Math.pow(c,position - d)
-                ) + 200;
+	    if(55<position && position<=150){
+                let b=6.273;
+                score=56.191*Math.pow(2,(54.147-(position+3.2))*Math.log(50)/99)+b;
+            } else if(35 < position && position <= 55){
+                let g = 1.036;
+                let h = 25.071;
+                score=212.61 * (
+                    Math.pow(g, 1 - position)
+                ) + h;
+            }else if(20 < position && position <= 35){
+                let c = 1.0099685;
+                let d = 31.152;
+                score= (250 - 83.389) * (Math.pow(c,2-position)) - d
             }else if(0 < position && position <= 20){
                 let e = 1.168;
                 let f = 100.39;
@@ -761,6 +781,32 @@
 
             });
 
+		//add version checker shit
+            if(VERSION_CHECKING){
+                let versionNotice=document.createElement("div");
+                versionNotice.setAttribute("id","version-notice");
+                versionNotice.setAttribute("style","font-size: 16px; background-color: rgba(191,191,191,0.20); border: solid rgba(191,191,191,1) 4px; border-radius: 8px; padding: 4px; transition: 600ms; font-size:16px; margin-top:8px;");
+                let msg="";
+                window.versionCompare().then(function(value){
+                    switch(value){
+                        case 1:
+                            msg="Current version suggests your version is newer than what github file says";
+                            versionNotice.style.backgroundColor="rgba(0,255,255,0.20)";
+                            versionNotice.style.borderColor="rgba(0,255,255,1)";
+                        break;
+                        case -1:
+                            msg="Your version appears outdated, (if this is incorrect then I did an oopsie)";
+                            versionNotice.style.backgroundColor="rgba(255,0,0,0.20)";
+                            versionNotice.style.borderColor="rgba(255,0,0,1)";
+                        break;
+                        default:
+                            versionNotice.setAttribute("style","");
+                        break;
+                    }
+                    versionNotice.innerText=msg;
+                })
+                container.appendChild(versionNotice);
+            }
             document.getElementById("overrides-container").append(container);
         });
     }
